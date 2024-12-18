@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cafe-web
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cafe-web
+  template:
+    metadata:
+      labels:
+        app: cafe-web
+    spec:
+      containers:
+      - name: cafe-web
+        image: jdzaky/cafe-web:v1.1
+        env:
+        - name: DB_HOST
+          value: "db"
+        - name: DB_USER
+          value: "root"
+        - name: DB_PASSWORD
+          value: ""
+        - name: DB_NAME
+          value: "cafe_db"
+        ports:
+        - containerPort: 80
